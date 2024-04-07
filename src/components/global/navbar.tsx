@@ -1,3 +1,4 @@
+import { currentUser, UserButton } from "@clerk/nextjs";
 import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +18,7 @@ const links: { name: string; href: string }[] = [
 ];
 
 const Navbar = async (props: Props) => {
-  // const user = await currentUser();
+  const user = await currentUser();
   return (
     <header
       className="fixed right-0 left-0 top-0 p-4 bg-black/40 backdrop-blur-[12px] z-[100] 
@@ -38,7 +39,10 @@ const Navbar = async (props: Props) => {
         <ul className="flex gap-4 items-center">
           {links.map((link) => (
             <li key={link.name} className="">
-              <Link href={link.href} className="text-gray-400 hover:text-gray-100">
+              <Link
+                href={link.href}
+                className="text-gray-400 hover:text-gray-100"
+              >
                 {link.name}
                 {/* <a className="text-white hover:text-primary-500">{link.name}</a> */}
               </Link>
@@ -67,6 +71,7 @@ const Navbar = async (props: Props) => {
           </span>
         </Link>
         {/* //WIP: wire up user */}
+        {user ? <UserButton afterSignOutUrl="/" /> : null}
         <MenuIcon className="md:hidden" />
       </aside>
     </header>

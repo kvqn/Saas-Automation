@@ -1,3 +1,20 @@
+import Category from "@/components/icons/category";
+import Logs from "@/components/icons/clipboard";
+import Templates from "@/components/icons/cloud_download";
+import Home from "@/components/icons/home";
+import Payment from "@/components/icons/payment";
+import Settings from "@/components/icons/settings";
+import Workflows from "@/components/icons/workflows";
+import { Metadata } from "next";
+
+export const METADATA: Metadata = {
+  authors: [{ name: "Khushal Gupta" }],
+  title: "Fuzzie ",
+  description:
+    "Fuzzie, the ultimate automation platform, streamlines your workflow with advanced automation tools. Simplify complex tasks, increase productivity, and transform the way you work. Start automating with Fuzzie today.",
+  // language: "en",
+};
+
 export const clients = [...new Array(10)].map((client, index) => ({
   href: `/${index + 1}.png`,
 }));
@@ -83,15 +100,15 @@ export const products = [
   },
 ];
 
-// export const menuOptions = [
-//   { name: "Dashboard", Component: Home, href: "/dashboard" },
-//   { name: "Workflows", Component: Workflows, href: "/workflows" },
-//   { name: "Settings", Component: Settings, href: "/settings" },
-//   { name: "Connections", Component: Category, href: "/connections" },
-//   { name: "Billing", Component: Payment, href: "/billing" },
-//   { name: "Templates", Component: Templates, href: "/templates" },
-//   { name: "Logs", Component: Logs, href: "/logs" },
-// ];
+export const menuOptions = [
+  { name: "Dashboard", Component: Home, href: "/dashboard" },
+  { name: "Workflows", Component: Workflows, href: "/workflows" },
+  { name: "Settings", Component: Settings, href: "/settings" },
+  { name: "Connections", Component: Category, href: "/connections" },
+  { name: "Billing", Component: Payment, href: "/billing" },
+  { name: "Templates", Component: Templates, href: "/templates" },
+  { name: "Logs", Component: Logs, href: "/logs" },
+];
 
 export const EditorCanvasDefaultCardTypes = {
   Email: { description: "Send and email to a user", type: "Action" },

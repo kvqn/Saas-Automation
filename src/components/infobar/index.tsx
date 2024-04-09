@@ -35,6 +35,7 @@ const InfoBar = (props: Props) => {
 
   return (
     <div className="flex flex-row justify-end gap-6 items-center px-4 py-4 w-full dark:bg-black ">
+      <ModeToggle />
       <span className="flex items-center gap-2 font-bold">
         <p className="text-sm font-light text-[#11111c] dark:text-gray-300">
           Credits

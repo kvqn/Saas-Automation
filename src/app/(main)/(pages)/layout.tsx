@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/global/mode-toggle";
 import React from "react";
 
 type Props = { children: React.ReactNode };

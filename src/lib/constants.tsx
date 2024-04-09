@@ -6,6 +6,7 @@ import Payment from "@/components/icons/payment";
 import Settings from "@/components/icons/settings";
 import Workflows from "@/components/icons/workflows";
 import { Metadata } from "next";
+import { Connection } from "./types";
 
 export const METADATA: Metadata = {
   authors: [{ name: "Khushal Gupta" }],
@@ -155,35 +156,35 @@ export const EditorCanvasDefaultCardTypes = {
   },
 };
 
-// export const CONNECTIONS: Connection[] = [
-//   {
-//     title: "Google Drive",
-//     description: "Connect your google drive to listen to folder changes",
-//     image: "/googleDrive.png",
-//     connectionKey: "googleNode",
-//     alwaysTrue: true,
-//   },
-//   {
-//     title: "Discord",
-//     description: "Connect your discord to send notification and messages",
-//     image: "/discord.png",
-//     connectionKey: "discordNode",
-//     accessTokenKey: "webhookURL",
-//   },
-//   {
-//     title: "Notion",
-//     description: "Create entries in your notion dashboard and automate tasks.",
-//     image: "/notion.png",
-//     connectionKey: "notionNode",
-//     accessTokenKey: "accessToken",
-//   },
-//   {
-//     title: "Slack",
-//     description:
-//       "Use slack to send notifications to team members through your own custom bot.",
-//     image: "/slack.png",
-//     connectionKey: "slackNode",
-//     accessTokenKey: "slackAccessToken",
-//     slackSpecial: true,
-//   },
-// ];
+export const CONNECTIONS: Connection[] = [
+  {
+    title: "Google Drive",
+    description: "Connect your google drive to listen to folder changes",
+    image: "/googleDrive.png",
+    connectionKey: "googleNode",
+    alwaysTrue: true,
+  },
+  {
+    title: "Discord",
+    description: "Connect your discord to send notification and messages",
+    image: "/discord.png",
+    connectionKey: "discordNode",
+    accessTokenKey: "webhookURL",
+  },
+  {
+    title: "Notion",
+    description: "Create entries in your notion dashboard and automate tasks.",
+    image: "/notion.png",
+    connectionKey: "notionNode",
+    accessTokenKey: "accessToken",
+  },
+  {
+    title: "Slack",
+    description:
+      "Use slack to send notifications to team members through your own custom bot.",
+    image: "/slack.png",
+    connectionKey: "slackNode",
+    accessTokenKey: "slackAccessToken",
+    slackSpecial: true,
+  },
+];

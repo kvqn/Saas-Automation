@@ -1,13 +1,21 @@
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, Poppins } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "@/providers/theme-provider";
 import "./globals.css";
 import { METADATA } from "@/lib/constants";
 import { ClerkProvider } from "@clerk/nextjs";
 import * as Sentry from "@sentry/nextjs";
 import React from "react";
+import ModalProvider from "@/providers/modal-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const font = DM_Sans({
   subsets: ["latin"],
+});
+
+const font2 = Poppins({
+  subsets: ["latin"],
+  weight: "100",
 });
 
 Sentry.init({
@@ -57,14 +65,17 @@ export default function RootLayout({
           <title>{METADATA.title ? METADATA.title.toString() : "Fuzzie"}</title>
         </head>
 
-        <body className={font.className}>
+        <body className={GeistSans.className}>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <ModalProvider>
+              {children}
+              <Toaster />
+            </ModalProvider>
           </ThemeProvider>
         </body>
       </html>

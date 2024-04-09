@@ -1,19 +1,23 @@
-import ProfileForm from "@/components/forms/profile-forms";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import ProfilePicture from "./_components/profile-picture";
 import { db } from "@/lib/db";
 import { currentUser } from "@clerk/nextjs";
+import ProfileForm from "@/components/forms/profile-forms";
+import Image from "next/image";
 
 type Props = {};
 
 const Settings = async (props: Props) => {
   const authUser = await currentUser();
+  //   console.log({ authUser });
   if (!authUser) return null;
 
-  const user = await db.user.findUnique({ where: { clerkId: authUser.id } });
+  const user = await db.user.findUnique({
+    where: {
+      clerkId: authUser.id,
+    },
+  });
+  //   console.log({ user });
 
   const removeProfileImage = async () => {
     "use server";
@@ -45,7 +49,6 @@ const Settings = async (props: Props) => {
 
   const updateUserInfo = async (name: string) => {
     "use server";
-
     const updateUser = await db.user.update({
       where: {
         clerkId: authUser.id,
@@ -69,11 +72,20 @@ const Settings = async (props: Props) => {
             Add or update your information
           </p>
         </div>
-        <ProfilePicture
+        <div className="">
+          <Image
+            src={user?.profileImage!}
+            alt="userProfile"
+            className="shadow-sm rounded-full"
+            width={120}
+            height={120}
+          />
+        </div>
+        {/* <ProfilePicture
           onDelete={removeProfileImage}
           userImage={user?.profileImage || ""}
           onUpload={uploadProfileImage}
-        />
+        /> */}
         <ProfileForm user={user} onUpdate={updateUserInfo} />
       </div>
     </div>

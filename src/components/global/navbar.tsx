@@ -44,7 +44,6 @@ const Navbar = async (props: Props) => {
                 className="text-gray-400 hover:text-gray-100"
               >
                 {link.name}
-                {/* <a className="text-white hover:text-primary-500">{link.name}</a> */}
               </Link>
             </li>
           ))}

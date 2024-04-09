@@ -13,11 +13,11 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex min-h-screen flex-col items-center justify-between overflow-x-hidden">
       <Navbar />
       <section
         className="h-screen w-full  bg-neutral-950 rounded-md  
-      !overflow-visible relative flex flex-col items-center  antialiased"
+      !overflow-visible relative flex flex-col items-center antialiased"
       >
         <div
           className="absolute inset-0  h-full w-full items-center px-5 py-24 

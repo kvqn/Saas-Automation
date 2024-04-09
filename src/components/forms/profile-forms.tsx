@@ -1,5 +1,5 @@
 "use client";
-import { EditUSerProfileSchema } from "@/lib/types";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -17,6 +17,7 @@ import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 import { currentUser } from "@clerk/nextjs";
 import { db } from "@/lib/db";
+import { EditUserProfileSchema } from "@/lib/types";
 
 type Props = {
   user: any;
@@ -26,14 +27,14 @@ type Props = {
 const ProfileForm = ({ user, onUpdate }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof EditUSerProfileSchema>>({
+  const form = useForm<z.infer<typeof EditUserProfileSchema>>({
     mode: "onChange",
-    resolver: zodResolver(EditUSerProfileSchema),
+    resolver: zodResolver(EditUserProfileSchema),
     defaultValues: {
-      name: user?.name || "test",
+      name: user?.name,
       // username: user?.username || '',
       // bio: user?.bio || '',
-      email: user?.email || "test@gmail.com",
+      email: user?.email,
     },
   });
 

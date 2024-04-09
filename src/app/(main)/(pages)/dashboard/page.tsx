@@ -7,7 +7,7 @@ const DashboardPage = () => {
       <div className="text-4xl sticky top-0 z-[10] p-6 bg-background/50 backdrop-blur-lg flex justify-between items-center border-b">
         <h1>Dashboard</h1>
         {/* <div className="flex items-center justify-center flex-col gap-8"> */}
-        <ModeToggle />
+       
       {/* </div> */}
       </div>
     </div>

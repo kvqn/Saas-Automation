@@ -8,9 +8,42 @@
   box-sizing: border-box;
 }
 
-*::-webkit-scrollbar {
-  display: none !important;
+* {
+  /* --sb-track-color: transparent; */
+  --sb-thumb-color: #6b7280; /* Changed the thumb color to a darker shade of gray */
+  --sb-size: 0.7rem;
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
 }
+
+*::-webkit-scrollbar-track {
+  background: transparent; /* Changed the track color to transparent */
+  border-radius: 0.625rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 0.625rem;
+  border: 0.125rem solid transparent; /* Increased the border size and made it transparent */
+  background-clip: content-box; /* Added this to make the border transparent */
+}
+
+*::-webkit-scrollbar {
+  width: var(--sb-size); /* Controls the width of the scrollbar */
+  height: var(--sb-size); /* Controls the height of the scrollbar */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* *::-webkit-scrollbar {
+  display: none !important;
+} */
 .bg-radial-gradient {
   background-image: radial-gradient(
     circle at 10% 20%,
@@ -74,3 +107,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Add more :nth-child rules for additional characters */

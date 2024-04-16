@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { useNodeConnections } from "@/providers/connections-provider";
 import { useParams, usePathname } from "next/navigation";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
-  onCreateNodeEdges,
+  onCreateNodesEdges,
   onFlowPublish,
 } from "../_actions/workflow-connections";
 
@@ -20,7 +20,7 @@ const FlowInstance = ({ children, edges, nodes }: Props) => {
   const { nodeConnection } = useNodeConnections();
 
   const onFlowAutomation = useCallback(async () => {
-    const flow = await onCreateNodeEdges(
+    const flow = await onCreateNodesEdges(
       pathname.split("/").pop()!,
       JSON.stringify(nodes),
       JSON.stringify(edges),
@@ -33,6 +33,23 @@ const FlowInstance = ({ children, edges, nodes }: Props) => {
     const response = await onFlowPublish(pathname.split("/").pop()!, true);
     if (response) toast.message(response);
   }, []);
+
+  const onAutomateFlow = async () => {
+    const flows: any = [];
+    const connectedEdges = edges.map((edge) => edge.target);
+    connectedEdges.map((target) => {
+      nodes.forEach((node) => {
+        if (node.id === target) {
+          flows.push(node.type);
+        }
+      });
+    });
+    setIsFlow(flows);
+  };
+
+  useEffect(() => {
+    onAutomateFlow();
+  }, [edges]);
 
   return (
     <div className="flex flex-col gap-2">

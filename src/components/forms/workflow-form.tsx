@@ -17,6 +17,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
+import { onCreateWorkflow } from "@/app/(main)/(pages)/workflows/_actions/workflow-connections";
+import { toast } from "sonner";
+import { useModal } from "@/providers/modal-provider";
 
 type Props = {
   title?: String;
@@ -24,6 +27,8 @@ type Props = {
 };
 
 const WorkflowForm = ({ title, subTitle }: Props) => {
+  const { setClose } = useModal();
+
   const form = useForm<z.infer<typeof WorkflowFormSchema>>({
     mode: "onChange",
     resolver: zodResolver(WorkflowFormSchema),
@@ -36,6 +41,15 @@ const WorkflowForm = ({ title, subTitle }: Props) => {
   const isLoading = form.formState.isLoading;
   const router = useRouter();
 
+  const handleSubmit = async (values: z.infer<typeof WorkflowFormSchema>) => {
+    const workflow = await onCreateWorkflow(values.name, values.description);
+    if (workflow) {
+      toast.message("Workflow created successfully");
+      router.refresh();
+    }
+    setClose();
+  };
+
   return (
     <Card className="w-full max-w-[650px] border-none">
       {title && subTitle && (
@@ -47,7 +61,7 @@ const WorkflowForm = ({ title, subTitle }: Props) => {
       <CardContent>
         <Form {...form}>
           <form
-            // onSubmit={form.handleSubmit(handleSubmit)}
+            onSubmit={form.handleSubmit(handleSubmit)}
             className="flex flex-col gap-4 text-left"
           >
             <FormField

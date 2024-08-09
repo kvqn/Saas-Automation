@@ -22,7 +22,7 @@ const UploadButton = ({ onUpload }: Props) => {
         router.refresh();
       }
     };
-    ctxProviderRef.current.addEventListener(
+    ctxProviderRef.current!.addEventListener(
       "file-upload-success",
       handleUpload,
     );

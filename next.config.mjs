@@ -29,6 +29,7 @@ export default withSentryConfig(
     silent: true,
     org: "self-jc3",
     project: "javascript-nextjs",
+    authToken: process.env.SENTRY_AUTH_TOKEN,
   },
   {
     // For all available options, see:
